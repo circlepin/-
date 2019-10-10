@@ -10,20 +10,26 @@ rc('font', family=font_name)
 
 import numpy as np
 #입력, 계산부
-vi = int(input("초기속력을 입력하세요:"))
-a = int(input("가속도를 입력하세요:"))
-vf = int(input("최종속력을 입력하세요:"))
-t = int(input("진행시간을 입력하세요:"))
+vi = int(input("초기속력을 입력하세요(단위:m/s):"))
+a = int(input("가속도를 입력하세요(단위:m/s^2):"))
+vf = int(input("최종속력을 입력하세요(단위:m/s):"))
+t = int(input("진행시간을 입력하세요(단위:s):"))
+mass = int(input("물체의 질량을 입력하세요(단위:kg):"))
 
-if a != 0 and vf!=0 :
+if a != 0 and vf !=0 :
     print('가속도와 최종속력 둘중 하나는 0이어야 합니다.')
-    
     
 if a == 0 :
     a = (vf - vi) / t
     d = (vf**2 - vi**2) / (2*a)
     print("가속도는", a, "m/s^2 입니다.")
+    print("변위는", d, "m 입니다.")
     print("이동거리는", abs(d), "m 입니다.")
+    if 0< vi < 15000000 & 0< vf < 15000000:
+        print("이때 가해지는 힘은", mass*a, "N 입니다.")
+        print("이때 물체에 한 일은", mass*a*d, "J 입니다.")
+    else:
+        print("물체가 광속 근처의 운동을 하므로 가해지는 힘과 물체에 한 일을 구하려면 상대론적 효과를 고려해야 합니다...")
     #그래프부
     plt.plot([0,t],[vi,vf]) 
     plt.xlabel('time(s)') 
@@ -41,9 +47,15 @@ if a == 0 :
 
 if vf == 0 :
     vf = vi + a*t
-    d = (vf**2 - vi**2) / (2*a)  
+    d = (vf**2 - vi**2) / (2*a)
     print("최종속력은", vf, "m/s 입니다.")  
+    print("변위는", d, "m 입니다.")
     print("이동거리는", abs(d), "m 입니다.")
+    if 0< vi < 15000000 & 0< vf < 15000000:
+        print("이때 가해지는 힘은", mass*a, "N 입니다.")
+        print("이때 물체에 한 일은", mass*a*d, "J 입니다.")
+    else:
+        print("물체가 광속 근처의 운동을 하므로 가해지는 힘과 물체에 한 일을 구하려면 상대론적 효과를 고려해야 합니다...")
     #그래프부
     plt.plot([0,t],[vi,vf]) 
     plt.xlabel('time(s)') 
